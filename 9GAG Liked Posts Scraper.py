@@ -30,7 +30,6 @@ def initialize_browser():
     browser = webdriver.Chrome(chrome_options=chrome_options, executable_path= getcwd() + '\\chromedriver.exe')
     print('browser started successfully')
     return browser
-# "C:\Users\fabia\Nextcloud\Sync\Coding\Small or unfinished scripts\some more\9gag scrape\Your 9GAG data.html"
 def get_data_from_9gag_html():
     file = codecs.open("Your 9GAG data.html", "r", "utf-8")
     soup = bs4.BeautifulSoup(file, 'lxml')
