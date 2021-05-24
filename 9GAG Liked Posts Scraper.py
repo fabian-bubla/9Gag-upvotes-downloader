@@ -5,6 +5,7 @@ Created on Sat Apr 24 19:39:48 2021
 @author: fabia
 """
 #IMPORT PACKAGES
+import time
 import bs4
 import selenium
 from selenium import webdriver
@@ -48,7 +49,10 @@ browser = initialize_browser()
 browser.get('https://9gag.com')
 print('Browser ready to go')
 
+
 #CLICK AWAY THE POP UP WHERE YOU SIGN AWAY YOUR RIGHTS
+time.sleep(8)
+
 #%% HERE STARTS THE MAIN LOOP
 
 for idx, entry in enumerate(liked_posts_list):
