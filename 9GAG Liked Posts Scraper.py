@@ -47,7 +47,8 @@ get_data_from_9gag_html()
 #VARIABLES
 browser = initialize_browser()
 browser.get('https://9gag.com')
-print('Browser ready to go')
+print('Browser ready.')
+print('You now have 8 seconds to press the 9GAG "I accept" button, then the script will continue')
 
 
 #CLICK AWAY THE POP UP WHERE YOU SIGN AWAY YOUR RIGHTS
