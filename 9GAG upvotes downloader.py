@@ -56,46 +56,46 @@ time.sleep(8)
 #%% HERE STARTS THE MAIN LOOP
 
 for idx, entry in enumerate(liked_posts_list):
-    if entry not in successfully_downloaded:
-        try:
-            #GO TO WEBPAGE
-            url = entry[0]
-            browser.get(url)
-            
-            
-            #Click more button
-            menu = browser.find_element_by_class_name('more')
-            actions = webdriver.ActionChains(browser)
-            actions.click(menu)
-            actions.perform()
-            
-            #find DL link
-            html_file= browser.page_source
-            soup = bs4.BeautifulSoup(html_file, 'lxml')
-            down_link= soup.findAll('a', href=True, text='Download')[0].get('href')
-            filename_throw_away, file_extension = os.path.splitext(down_link)
-            down_link = r'https://9gag.com' + str(down_link)
-            
-            
-            #Download Image
-            req = Request(down_link, headers={'User-Agent': 'Mozilla/5.0'})
-            content = urlopen(req).read()
-            
-            #CreateFileName
-            truncated_title = entry[1][:230]
-            imgfilestring = re.sub('\W+',' ', truncated_title) + str(file_extension)
-            
-            #Save Image
-            imageFile = open( r'downloads/' + imgfilestring, 'wb+')
-            imageFile.write(content)
-            imageFile.close()
-            
-            print('post ' + str(idx) + ' of ' + str(len(liked_posts_list)))
-            successfully_downloaded.append(entry)
-        except Exception as e:
-            print(e)
-            print("Download failed: " +str(entry) )
-            continue
+    # if entry not in successfully_downloaded:
+    try:
+        #GO TO WEBPAGE
+        url = entry[0]
+        browser.get(url)
+        
+        
+        #Click more button
+        menu = browser.find_element_by_class_name('more')
+        actions = webdriver.ActionChains(browser)
+        actions.click(menu)
+        actions.perform()
+        
+        #find DL link
+        html_file= browser.page_source
+        soup = bs4.BeautifulSoup(html_file, 'lxml')
+        down_link= soup.findAll('a', href=True, text='Download')[0].get('href')
+        filename_throw_away, file_extension = os.path.splitext(down_link)
+        down_link = r'https://9gag.com' + str(down_link)
+        
+        
+        #Download Image
+        req = Request(down_link, headers={'User-Agent': 'Mozilla/5.0'})
+        content = urlopen(req).read()
+        
+        #CreateFileName
+        truncated_title = entry[1][:230]
+        imgfilestring = re.sub('\W+',' ', truncated_title) + str(file_extension)
+        
+        #Save Image
+        imageFile = open( r'downloads/' + imgfilestring, 'wb+')
+        imageFile.write(content)
+        imageFile.close()
+        
+        print('post ' + str(idx) + ' of ' + str(len(liked_posts_list)))
+        successfully_downloaded.append(entry)
+    except Exception as e:
+        print(e)su
+        print("Download failed: " +str(entry) )
+        continue
     else:
         continue
     
